@@ -25,3 +25,7 @@ _build/
 .env
 .venv
 venv
+videos
+models
+tensorboard_logs
+logs
