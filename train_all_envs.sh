@@ -9,6 +9,8 @@ source .venv/bin/activate
 # Set default training parameters
 TIMESTEPS=${TIMESTEPS:-1000000}
 SCRIPT="stable_baselines_agent.py"
+LOG_OUTPUT=${LOG_OUTPUT:-false}
+PARALLEL_JOBS=${PARALLEL_JOBS:-1}
 
 # Create results directory if it doesn't exist
 mkdir -p training_results
@@ -197,14 +199,31 @@ ENVS=(
 # Function to train a single environment
 train_env() {
     local env=$1
+    echo "=================================================="
     echo "Training on environment: $env"
     echo "Command: python $SCRIPT --env $env --timesteps $TIMESTEPS"
+    echo "=================================================="
     
-    # Uncomment the line below to actually run the training
-    # python $SCRIPT --env "$env" --timesteps $TIMESTEPS
+    # Create a safe filename for logging (replace special chars)
+    local log_file=$(echo "$env" | sed 's/[^a-zA-Z0-9-]/_/g')
     
-    # For batch training with logging:
-    # python $SCRIPT --env "$env" --timesteps $TIMESTEPS > "training_results/${env}.log" 2>&1
+    # Run the actual training with logging
+    if [ "$LOG_OUTPUT" = true ]; then
+        python $SCRIPT --env "$env" --timesteps $TIMESTEPS > "training_results/${log_file}.log" 2>&1
+        if [ $? -eq 0 ]; then
+            echo "✓ Training completed successfully for $env"
+        else
+            echo "✗ Training failed for $env (check training_results/${log_file}.log)"
+        fi
+    else
+        python $SCRIPT --env "$env" --timesteps $TIMESTEPS
+        if [ $? -eq 0 ]; then
+            echo "✓ Training completed successfully for $env"
+        else
+            echo "✗ Training failed for $env"
+        fi
+    fi
+    echo ""
 }
 
 # Display usage information
@@ -218,11 +237,15 @@ usage() {
     echo "  -t, --timesteps N    Set number of timesteps (default: 1000000)"
     echo "  -a, --all            Train all environments (WARNING: This will take a long time!)"
     echo "  -b, --batch FILE     Train environments listed in FILE (one per line)"
+    echo "  --log                Enable logging to files in training_results/"
+    echo "  --parallel N         Run N training jobs in parallel (use with caution!)"
     echo "  --dry-run            Print commands without executing them"
     echo ""
     echo "Examples:"
     echo "  $0 -e MiniGrid-DoorKey-8x8-v0           # Train single environment"
     echo "  $0 -e MiniGrid-Empty-5x5-v0 -t 500000   # Train with custom timesteps"
+    echo "  $0 -a --log                              # Train all with logging"
+    echo "  $0 -a --parallel 4                       # Train all with 4 parallel jobs"
     echo "  $0 -l                                    # List all environments"
     echo "  $0 --dry-run -a                          # Show all training commands"
     echo ""
@@ -263,6 +286,14 @@ while [[ $# -gt 0 ]]; do
             ;;
         -b|--batch)
             BATCH_FILE="$2"
+            shift 2
+            ;;
+        --log)
+            LOG_OUTPUT=true
+            shift
+            ;;
+        --parallel)
+            PARALLEL_JOBS="$2"
             shift 2
             ;;
         --dry-run)
@@ -316,22 +347,56 @@ elif [ -n "$BATCH_FILE" ]; then
     done < "$BATCH_FILE"
 elif [ "$TRAIN_ALL" = true ]; then
     # Train all environments
-    echo "WARNING: Training all ${#ENVS[@]} environments will take a VERY long time!"
+    echo "=========================================="
+    echo "Training ALL ${#ENVS[@]} environments"
+    echo "Timesteps per environment: $TIMESTEPS"
+    if [ "$LOG_OUTPUT" = true ]; then
+        echo "Logging enabled: training_results/"
+    fi
+    if [ "$PARALLEL_JOBS" -gt 1 ]; then
+        echo "Parallel jobs: $PARALLEL_JOBS"
+    fi
+    echo "=========================================="
+    
     if [ "$DRY_RUN" = false ]; then
+        echo ""
+        echo "WARNING: This will take a VERY long time!"
+        echo "Estimated time: ~30-60 minutes per environment"
+        echo "Total estimated time: ~90-180 hours for all environments sequentially"
+        echo ""
         read -p "Are you sure you want to continue? (yes/no): " confirm
         if [ "$confirm" != "yes" ]; then
             echo "Aborted."
             exit 0
         fi
+        echo ""
+        echo "Starting training at $(date)"
+        echo ""
     fi
     
-    for env in "${ENVS[@]}"; do
-        if [ "$DRY_RUN" = true ]; then
-            echo "python $SCRIPT --env $env --timesteps $TIMESTEPS"
-        else
-            train_env "$env"
+    if [ "$PARALLEL_JOBS" -gt 1 ] && [ "$DRY_RUN" = false ]; then
+        # Parallel execution using xargs
+        export -f train_env
+        export SCRIPT TIMESTEPS LOG_OUTPUT
+        printf "%s\n" "${ENVS[@]}" | xargs -P "$PARALLEL_JOBS" -I {} bash -c 'train_env "$@"' _ {}
+    else
+        # Sequential execution
+        for env in "${ENVS[@]}"; do
+            if [ "$DRY_RUN" = true ]; then
+                echo "python $SCRIPT --env $env --timesteps $TIMESTEPS"
+            else
+                train_env "$env"
+            fi
+        done
+    fi
+    
+    if [ "$DRY_RUN" = false ]; then
+        echo ""
+        echo "All training completed at $(date)"
+        if [ "$LOG_OUTPUT" = true ]; then
+            echo "Check training_results/ for individual logs"
         fi
-    done
+    fi
 else
     # No specific action requested
     usage
