@@ -312,7 +312,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--reward-threshold",
         type=float,
-        default=None,
+        default=0.8,
         help="Stop training when this reward threshold is reached"
     )
     parser.add_argument(
