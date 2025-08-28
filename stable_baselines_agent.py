@@ -91,7 +91,7 @@ def train_ppo(env_id="MiniGrid-DoorKey-8x8-v0", total_timesteps=100000, n_envs=4
         clip_range=0.2,
         ent_coef=0.01,
         verbose=1,
-        tensorboard_log="./tensorboard_logs/"
+        tensorboard_log=f"./tensorboard_logs/"
     )
     
     # Create callbacks list
@@ -166,7 +166,8 @@ def train_ppo(env_id="MiniGrid-DoorKey-8x8-v0", total_timesteps=100000, n_envs=4
         model.learn(
             total_timesteps=total_timesteps,
             callback=callback_list,
-            progress_bar=True
+            progress_bar=True,
+            tb_log_name=env_id
         )
         print("\nTraining completed successfully!")
     except KeyboardInterrupt:
