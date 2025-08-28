@@ -11,7 +11,7 @@ torch>=2.0.0
 torchvision>=0.15.0
 
 # Stable Baselines3 for production-ready algorithms
-stable-baselines3>=2.1.0
+stable-baselines3[extra]
 sb3-contrib>=2.1.0  # Additional algorithms like QRDQN, TQC
 
 # Logging and visualization

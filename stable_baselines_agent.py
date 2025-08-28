@@ -41,7 +41,8 @@ class EarlyStoppingCallback(BaseCallback):
             if self.verbose > 0:
                 print(f"No improvement for {self.no_improvement_count} evaluations")
         
-        if self.no_improvement_count >= self.patience:
+        # Only trigger early stopping if reward is above 0.5 and patience exceeded
+        if self.no_improvement_count >= self.patience and mean_reward >= 0.5:
             if self.verbose > 0:
                 print(f"Early stopping triggered after {self.no_improvement_count} evaluations without improvement")
             return False  # Stop training
