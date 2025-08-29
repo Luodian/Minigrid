@@ -242,40 +242,106 @@ def evaluate_model(model_path, env_id, n_eval_episodes=10):
     return mean_reward, std_reward
 
 def record_video_with_agent(model_path, env_id, num_episodes=3):
-    """Record video of trained PPO agent playing"""
-    from gymnasium.wrappers import RecordVideo
+    """Record video of trained PPO agent playing with both global and front views as separate streams"""
+    import cv2
+    from minigrid.wrappers import RGBImgPartialObsWrapper, ImgObsWrapper
     
-    # Create environment with video recording
-    env = gym.make(env_id, render_mode="rgb_array")
-    env = ImgObsWrapper(env)
-    env = gym.wrappers.FlattenObservation(env)
-    env = RecordVideo(
-        env, 
-        video_folder="./videos",
-        episode_trigger=lambda x: True,
-        name_prefix="ppo_play"
-    )
+    print(f"Recording dual-stream videos for {env_id}")
+    
+    # Create two environments - one for global view, one for front view
+    global_env = gym.make(env_id, render_mode="rgb_array")
+    front_env = gym.make(env_id, render_mode="rgb_array", agent_view_size=7)
+    # Use larger tile_size to get higher resolution (7x7 grid * 32 pixels = 224x224, then we'll resize to 256x256)
+    front_env = RGBImgPartialObsWrapper(front_env, tile_size=32)
+    front_env = ImgObsWrapper(front_env)  # Wrap to get image only
+    
+    # Create flattened env for model prediction
+    predict_env = gym.make(env_id, render_mode="rgb_array")
+    predict_env = ImgObsWrapper(predict_env)
+    predict_env = gym.wrappers.FlattenObservation(predict_env)
     
     # Load model
     model = PPO.load(model_path)
     
     # Record episodes
     for episode in range(num_episodes):
-        obs, _ = env.reset()
+        # Reset all environments with same seed
+        seed = 42 + episode
+        global_obs, _ = global_env.reset(seed=seed)
+        front_obs, _ = front_env.reset(seed=seed)
+        predict_obs, _ = predict_env.reset(seed=seed)
+        
+        # Video writer setup for two separate streams
+        global_video_name = f"./videos/ppo_global_view_ep{episode+1}.mp4"
+        front_video_name = f"./videos/ppo_front_view_ep{episode+1}.mp4"
+        fps = 10
+        global_frames = []
+        front_frames = []
+        
         done = False
         total_reward = 0
         steps = 0
         
         while not done and steps < 1000:
-            action, _ = model.predict(obs, deterministic=True)
-            obs, reward, terminated, truncated, _ = env.step(action)
-            done = terminated or truncated
+            # Get action from model using flattened observation
+            action, _ = model.predict(predict_obs, deterministic=True)
+            
+            # Step all environments with same action
+            global_obs, reward, g_terminated, g_truncated, _ = global_env.step(action)
+            front_obs, _, f_terminated, f_truncated, _ = front_env.step(action)
+            predict_obs, _, p_terminated, p_truncated, _ = predict_env.step(action)
+            
+            done = g_terminated or g_truncated
+            
+            # Get frames for both views
+            global_frame = global_env.render()
+            front_frame = front_obs  # Front view observation is the RGB image from the wrapper
+            
+            # Resize front view to match global view resolution if needed
+            if front_frame.shape[:2] != global_frame.shape[:2]:
+                front_frame = cv2.resize(front_frame, (global_frame.shape[1], global_frame.shape[0]), 
+                                        interpolation=cv2.INTER_NEAREST)
+            
+            # Store frames separately without any text overlay
+            global_frames.append(global_frame)
+            front_frames.append(front_frame)
+            
             total_reward += reward
             steps += 1
         
+        # Write global view video
+        if global_frames:
+            height, width = global_frames[0].shape[:2]
+            fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+            out_global = cv2.VideoWriter(global_video_name, fourcc, fps, (width, height))
+            
+            for frame in global_frames:
+                # Convert RGB to BGR for OpenCV
+                frame_bgr = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+                out_global.write(frame_bgr)
+            
+            out_global.release()
+            print(f"Episode {episode + 1}: Saved {global_video_name}")
+        
+        # Write front view video
+        if front_frames:
+            height, width = front_frames[0].shape[:2]
+            fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+            out_front = cv2.VideoWriter(front_video_name, fourcc, fps, (width, height))
+            
+            for frame in front_frames:
+                # Convert RGB to BGR for OpenCV
+                frame_bgr = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+                out_front.write(frame_bgr)
+            
+            out_front.release()
+            print(f"Episode {episode + 1}: Saved {front_video_name}")
+        
         print(f"Episode {episode + 1}: Total Reward = {total_reward:.2f}, Steps = {steps}")
-    
-    env.close()
+        
+    global_env.close()
+    front_env.close()
+    predict_env.close()
     print(f"Videos saved in ./videos/")
 
 if __name__ == "__main__":
