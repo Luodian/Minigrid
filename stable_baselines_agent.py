@@ -12,6 +12,8 @@ from stable_baselines3.common.evaluation import evaluate_policy
 from stable_baselines3.common.callbacks import EvalCallback, CheckpointCallback, CallbackList, StopTrainingOnRewardThreshold, BaseCallback
 from stable_baselines3.common.monitor import Monitor
 import os
+import json
+from typing import Optional
 import argparse
 
 class EarlyStoppingCallback(BaseCallback):
@@ -241,10 +243,25 @@ def evaluate_model(model_path, env_id, n_eval_episodes=10):
     
     return mean_reward, std_reward
 
-def record_video_with_agent(model_path, env_id, num_episodes=3):
-    """Record video of trained PPO agent playing with both global and front views as separate streams"""
+def record_video_with_agent(
+    model_path: str,
+    env_id: str,
+    num_episodes: int = 3,
+    record_actions: bool = False,
+    actions_format: str = "csv",
+    actions_dir: Optional[str] = None,
+):
+    """Record video of a trained PPO agent.
+
+    Saves two videos per episode (global and front views). Optionally logs
+    per-step actions to CSV or JSONL alongside the videos.
+    """
     import cv2
     from minigrid.wrappers import RGBImgPartialObsWrapper, ImgObsWrapper
+    try:
+        from minigrid.core.actions import Actions  # for action names
+    except Exception:
+        Actions = None
     
     print(f"Recording dual-stream videos for {env_id}")
     
@@ -270,18 +287,43 @@ def record_video_with_agent(model_path, env_id, num_episodes=3):
         global_obs, _ = global_env.reset(seed=seed)
         front_obs, _ = front_env.reset(seed=seed)
         predict_obs, _ = predict_env.reset(seed=seed)
-        
+
         # Video writer setup for two separate streams
         global_video_name = f"./videos/ppo_global_view_ep{episode+1}.mp4"
         front_video_name = f"./videos/ppo_front_view_ep{episode+1}.mp4"
         fps = 10
         global_frames = []
         front_frames = []
-        
+
+        # Optional action logging
+        actions_out_base = None
+        actions_fp = None
+        # Optional per-step frame export directories (tie frames to actions)
+        frames_global_dir = None
+        frames_front_dir = None
+        if record_actions:
+            out_dir = actions_dir or os.path.dirname(global_video_name) or "."
+            os.makedirs(out_dir, exist_ok=True)
+            actions_out_base = os.path.join(out_dir, f"ppo_actions_ep{episode+1}")
+            # Create per-episode frame folders next to the action log
+            frames_base_dir = os.path.join(out_dir, f"ppo_frames_ep{episode+1}")
+            frames_global_dir = os.path.join(frames_base_dir, "global")
+            frames_front_dir = os.path.join(frames_base_dir, "front")
+            os.makedirs(frames_global_dir, exist_ok=True)
+            os.makedirs(frames_front_dir, exist_ok=True)
+            if actions_format.lower() == "jsonl":
+                actions_fp = open(actions_out_base + ".jsonl", "w", encoding="utf-8")
+            else:
+                # default to CSV
+                actions_format = "csv"
+                actions_fp = open(actions_out_base + ".csv", "w", encoding="utf-8")
+                # Include frame file paths to directly link images and actions
+                actions_fp.write("t,action_id,action_name,reward,terminated,truncated,global_frame,front_frame\n")
+
         done = False
         total_reward = 0
         steps = 0
-        
+
         while not done and steps < 1000:
             # Get action from model using flattened observation
             action, _ = model.predict(predict_obs, deterministic=True)
@@ -292,7 +334,7 @@ def record_video_with_agent(model_path, env_id, num_episodes=3):
             predict_obs, _, p_terminated, p_truncated, _ = predict_env.step(action)
             
             done = g_terminated or g_truncated
-            
+
             # Get frames for both views
             global_frame = global_env.render()
             front_frame = front_obs  # Front view observation is the RGB image from the wrapper
@@ -308,6 +350,52 @@ def record_video_with_agent(model_path, env_id, num_episodes=3):
             
             total_reward += reward
             steps += 1
+
+            # Log action and save per-step frames if enabled
+            if record_actions and actions_fp is not None:
+                a_id = int(action) if hasattr(action, "__int__") else int(np.array(action).item())
+                a_name = None
+                if Actions is not None:
+                    try:
+                        a_name = Actions(a_id).name
+                    except Exception:
+                        a_name = str(a_id)
+                # Sanitize action name for filenames
+                safe_name = "" if a_name is None else "".join(c if c.isalnum() or c in ("-", "_") else "_" for c in a_name)
+                # Build filenames (zero-padded step index for ordering)
+                step_idx = steps - 1
+                g_fname = f"g_{step_idx:04d}_a{a_id}{('_' + safe_name) if safe_name else ''}.png"
+                f_fname = f"f_{step_idx:04d}_a{a_id}{('_' + safe_name) if safe_name else ''}.png"
+                g_path = os.path.join(frames_global_dir, g_fname) if frames_global_dir else None
+                f_path = os.path.join(frames_front_dir, f_fname) if frames_front_dir else None
+                # Save image files mapped to this action/timestamp
+                if g_path is not None:
+                    # Convert RGB->BGR for OpenCV
+                    from cv2 import cvtColor, COLOR_RGB2BGR, imwrite
+                    imwrite(g_path, cvtColor(global_frame, COLOR_RGB2BGR))
+                if f_path is not None:
+                    from cv2 import cvtColor, COLOR_RGB2BGR, imwrite
+                    imwrite(f_path, cvtColor(front_frame, COLOR_RGB2BGR))
+
+                # Ensure JSON-serializable reward
+                rew = float(reward) if isinstance(reward, (np.floating, float, int)) else float(np.array(reward).item())
+                if actions_format == "jsonl":
+                    rec = {
+                        "t": step_idx,
+                        "action_id": a_id,
+                        "action_name": a_name,
+                        "reward": rew,
+                        "terminated": bool(g_terminated),
+                        "truncated": bool(g_truncated),
+                        "global_frame": g_path,
+                        "front_frame": f_path,
+                    }
+                    actions_fp.write(json.dumps(rec) + "\n")
+                else:
+                    # CSV (include frame file paths)
+                    actions_fp.write(
+                        f"{step_idx},{a_id},{a_name if a_name is not None else ''},{rew},{int(g_terminated)},{int(g_truncated)},{g_path if g_path else ''},{f_path if f_path else ''}\n"
+                    )
         
         # Write global view video
         if global_frames:
@@ -338,6 +426,11 @@ def record_video_with_agent(model_path, env_id, num_episodes=3):
             print(f"Episode {episode + 1}: Saved {front_video_name}")
         
         print(f"Episode {episode + 1}: Total Reward = {total_reward:.2f}, Steps = {steps}")
+
+        if actions_fp is not None:
+            actions_fp.close()
+            suffix = ".jsonl" if actions_format == "jsonl" else ".csv"
+            print(f"Episode {episode + 1}: Saved actions to {actions_out_base + suffix}")
         
     global_env.close()
     front_env.close()
@@ -402,6 +495,23 @@ if __name__ == "__main__":
         help="Record video of agent playing"
     )
     parser.add_argument(
+        "--record-actions",
+        action="store_true",
+        help="Also save per-step actions while recording"
+    )
+    parser.add_argument(
+        "--actions-format",
+        choices=["csv", "jsonl"],
+        default="csv",
+        help="Format for saved actions when recording"
+    )
+    parser.add_argument(
+        "--actions-dir",
+        type=str,
+        default=None,
+        help="Directory to save action logs (defaults to videos dir)"
+    )
+    parser.add_argument(
         "--episodes",
         type=int,
         default=5,
@@ -434,7 +544,14 @@ if __name__ == "__main__":
         # Record video
         if not args.model:
             args.model = f"models/ppo_{args.env}_final"
-        record_video_with_agent(args.model, args.env, num_episodes=args.episodes)
+        record_video_with_agent(
+            args.model,
+            args.env,
+            num_episodes=args.episodes,
+            record_actions=args.record_actions,
+            actions_format=args.actions_format,
+            actions_dir=args.actions_dir,
+        )
     
     else:
         # Train PPO with early stopping
