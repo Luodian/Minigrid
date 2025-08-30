@@ -1,0 +1,54 @@
+High Reward Models Transfer Summary
+====================================
+
+Date: 2025-08-30
+Source: /opt/tiger/Minigrid/models
+Target: /mnt/bn/seed-aws-va/brianli/prod/Minigrid/models
+
+Total Models Moved: 35
+Total Size: 12.3 MB
+
+Moved Models (environments with average reward >= 0.8):
+======================================================
+
+BabyAI Environments (15 models):
+- ppo_BabyAI-GoToLocalS6N3-v0_final.zip (avg reward: 0.930)
+- ppo_BabyAI-GoToLocalS6N4-v0_final.zip (avg reward: 0.870)
+- ppo_BabyAI-GoToObj-v0_final.zip (avg reward: 0.890)
+- ppo_BabyAI-GoToObjS4-v0_final.zip (avg reward: 0.850)
+- ppo_BabyAI-GoToObjS6-v1_final.zip (avg reward: 0.900)
+- ppo_BabyAI-GoToRedBall-v0_final.zip (avg reward: 0.920)
+- ppo_BabyAI-GoToRedBallNoDists-v0_final.zip (avg reward: 0.930)
+- ppo_BabyAI-KeyCorridorS3R1-v0_final.zip (avg reward: 0.950)
+- ppo_BabyAI-OneRoomS16-v0_final.zip (avg reward: 0.950)
+- ppo_BabyAI-OneRoomS8-v0_final.zip (avg reward: 0.950)
+- ppo_BabyAI-OpenDoor-v0_final.zip (avg reward: 0.970)
+- ppo_BabyAI-OpenDoorColor-v0_final.zip (avg reward: 0.980)
+- ppo_BabyAI-OpenRedDoor-v0_final.zip (avg reward: 0.920)
+- ppo_BabyAI-PutNextS4N1-v0_final.zip (avg reward: 0.920)
+- ppo_BabyAI-UnlockLocal-v0_final.zip (avg reward: 0.980)
+
+MiniGrid Environments (20 models):
+- ppo_MiniGrid-DistShift1-v0_final.zip (avg reward: 0.950)
+- ppo_MiniGrid-DistShift2-v0_final.zip (avg reward: 0.960)
+- ppo_MiniGrid-DoorKey-5x5-v0_final.zip (avg reward: 0.960)
+- ppo_MiniGrid-Dynamic-Obstacles-5x5-v0_final.zip (avg reward: 0.930)
+- ppo_MiniGrid-Dynamic-Obstacles-6x6-v0_final.zip (avg reward: 0.890)
+- ppo_MiniGrid-Dynamic-Obstacles-8x8-v0_final.zip (avg reward: 0.900)
+- ppo_MiniGrid-Dynamic-Obstacles-Random-6x6-v0_final.zip (avg reward: 0.830)
+- ppo_MiniGrid-Empty-16x16-v0_final.zip (avg reward: 0.980)
+- ppo_MiniGrid-Empty-5x5-v0_final.zip (avg reward: 0.950)
+- ppo_MiniGrid-Empty-6x6-v0_final.zip (avg reward: 0.960)
+- ppo_MiniGrid-Empty-8x8-v0_final.zip (avg reward: 0.960)
+- ppo_MiniGrid-Empty-Random-5x5-v0_final.zip (avg reward: 0.960)
+- ppo_MiniGrid-Empty-Random-6x6-v0_final.zip (avg reward: 0.960)
+- ppo_MiniGrid-KeyCorridorS3R2-v0_final.zip (avg reward: 0.930)
+- ppo_MiniGrid-LavaCrossingS9N1-v0_final.zip (avg reward: 0.950)
+- ppo_MiniGrid-LavaGapS5-v0_final.zip (avg reward: 0.950)
+- ppo_MiniGrid-LavaGapS6-v0_final.zip (avg reward: 0.940)
+- ppo_MiniGrid-MultiRoom-N2-S4-v0_final.zip (avg reward: 0.820)
+- ppo_MiniGrid-SimpleCrossingS9N1-v0_final.zip (avg reward: 0.960)
+- ppo_MiniGrid-SimpleCrossingS9N3-v0_final.zip (avg reward: 0.950)
+
+Operation completed successfully.
+All models corresponding to high-performing environments have been transferred to the target location.
