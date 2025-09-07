@@ -1,0 +1,494 @@
+================================================================================
+COMPLETE LIST OF AVAILABLE GYMNASIUM ENVIRONMENTS
+Generated: 2025-09-07 14:32:03
+================================================================================
+
+USAGE:
+  python train.py --env <ENVIRONMENT_NAME>
+  python train.py --env <ENVIRONMENT_NAME> --timesteps 100000
+  python train.py --env <ENVIRONMENT_NAME> --eval --record
+
+================================================================================
+CLASSIC CONTROL (17 environments)
+================================================================================
+
+  Acrobot                             python train.py --env Acrobot-v1
+  CartPole                            python train.py --env CartPole-v1
+    Available versions: 1, 0
+  InvertedDoublePendulum              python train.py --env InvertedDoublePendulum-v5
+    Available versions: 5, 4, 2
+  InvertedPendulum                    python train.py --env InvertedPendulum-v5
+    Available versions: 5, 4, 2
+  LunarLander                         python train.py --env LunarLander-v3
+  LunarLanderContinuous               python train.py --env LunarLanderContinuous-v3
+  MountainCar                         python train.py --env MountainCar-v0
+  MountainCarContinuous               python train.py --env MountainCarContinuous-v0
+  Pendulum                            python train.py --env Pendulum-v1
+  phys2d/CartPole                     python train.py --env phys2d/CartPole-v1
+    Available versions: 1, 0
+  phys2d/Pendulum                     python train.py --env phys2d/Pendulum-v0
+
+================================================================================
+BOX2D (3 environments)
+================================================================================
+
+  BipedalWalker                       python train.py --env BipedalWalker-v3
+  BipedalWalkerHardcore               python train.py --env BipedalWalkerHardcore-v3
+  CarRacing                           python train.py --env CarRacing-v3
+
+================================================================================
+TOY TEXT (8 environments)
+================================================================================
+
+  Blackjack                           python train.py --env Blackjack-v1
+  CliffWalking                        python train.py --env CliffWalking-v1
+  CliffWalkingSlippery                python train.py --env CliffWalkingSlippery-v1
+  FrozenLake                          python train.py --env FrozenLake-v1
+  FrozenLake8x8                       python train.py --env FrozenLake8x8-v1
+  Taxi                                python train.py --env Taxi-v3
+  tabular/Blackjack                   python train.py --env tabular/Blackjack-v0
+  tabular/CliffWalking                python train.py --env tabular/CliffWalking-v0
+
+================================================================================
+ATARI (ALE) (104 environments)
+================================================================================
+
+## Version 5 (Recommended - Latest)
+----------------------------------------
+  Adventure                      python train.py --env ALE/Adventure-v5
+  AirRaid                        python train.py --env ALE/AirRaid-v5
+  Alien                          python train.py --env ALE/Alien-v5
+  Amidar                         python train.py --env ALE/Amidar-v5
+  Assault                        python train.py --env ALE/Assault-v5
+  Asterix                        python train.py --env ALE/Asterix-v5
+  Asteroids                      python train.py --env ALE/Asteroids-v5
+  Atlantis                       python train.py --env ALE/Atlantis-v5
+  Atlantis2                      python train.py --env ALE/Atlantis2-v5
+  Backgammon                     python train.py --env ALE/Backgammon-v5
+  BankHeist                      python train.py --env ALE/BankHeist-v5
+  BasicMath                      python train.py --env ALE/BasicMath-v5
+  BattleZone                     python train.py --env ALE/BattleZone-v5
+  BeamRider                      python train.py --env ALE/BeamRider-v5
+  Berzerk                        python train.py --env ALE/Berzerk-v5
+  Blackjack                      python train.py --env ALE/Blackjack-v5
+  Bowling                        python train.py --env ALE/Bowling-v5
+  Boxing                         python train.py --env ALE/Boxing-v5
+  Breakout                       python train.py --env ALE/Breakout-v5
+  Carnival                       python train.py --env ALE/Carnival-v5
+  Casino                         python train.py --env ALE/Casino-v5
+  Centipede                      python train.py --env ALE/Centipede-v5
+  ChopperCommand                 python train.py --env ALE/ChopperCommand-v5
+  CrazyClimber                   python train.py --env ALE/CrazyClimber-v5
+  Crossbow                       python train.py --env ALE/Crossbow-v5
+  Darkchambers                   python train.py --env ALE/Darkchambers-v5
+  Defender                       python train.py --env ALE/Defender-v5
+  DemonAttack                    python train.py --env ALE/DemonAttack-v5
+  DonkeyKong                     python train.py --env ALE/DonkeyKong-v5
+  DoubleDunk                     python train.py --env ALE/DoubleDunk-v5
+  Earthworld                     python train.py --env ALE/Earthworld-v5
+  ElevatorAction                 python train.py --env ALE/ElevatorAction-v5
+  Enduro                         python train.py --env ALE/Enduro-v5
+  Entombed                       python train.py --env ALE/Entombed-v5
+  Et                             python train.py --env ALE/Et-v5
+  FishingDerby                   python train.py --env ALE/FishingDerby-v5
+  FlagCapture                    python train.py --env ALE/FlagCapture-v5
+  Freeway                        python train.py --env ALE/Freeway-v5
+  Frogger                        python train.py --env ALE/Frogger-v5
+  Frostbite                      python train.py --env ALE/Frostbite-v5
+  Galaxian                       python train.py --env ALE/Galaxian-v5
+  Gopher                         python train.py --env ALE/Gopher-v5
+  Gravitar                       python train.py --env ALE/Gravitar-v5
+  Hangman                        python train.py --env ALE/Hangman-v5
+  HauntedHouse                   python train.py --env ALE/HauntedHouse-v5
+  Hero                           python train.py --env ALE/Hero-v5
+  HumanCannonball                python train.py --env ALE/HumanCannonball-v5
+  IceHockey                      python train.py --env ALE/IceHockey-v5
+  Jamesbond                      python train.py --env ALE/Jamesbond-v5
+  JourneyEscape                  python train.py --env ALE/JourneyEscape-v5
+  Kaboom                         python train.py --env ALE/Kaboom-v5
+  Kangaroo                       python train.py --env ALE/Kangaroo-v5
+  KeystoneKapers                 python train.py --env ALE/KeystoneKapers-v5
+  KingKong                       python train.py --env ALE/KingKong-v5
+  Klax                           python train.py --env ALE/Klax-v5
+  Koolaid                        python train.py --env ALE/Koolaid-v5
+  Krull                          python train.py --env ALE/Krull-v5
+  KungFuMaster                   python train.py --env ALE/KungFuMaster-v5
+  LaserGates                     python train.py --env ALE/LaserGates-v5
+  LostLuggage                    python train.py --env ALE/LostLuggage-v5
+  MarioBros                      python train.py --env ALE/MarioBros-v5
+  MiniatureGolf                  python train.py --env ALE/MiniatureGolf-v5
+  MontezumaRevenge               python train.py --env ALE/MontezumaRevenge-v5
+  MrDo                           python train.py --env ALE/MrDo-v5
+  MsPacman                       python train.py --env ALE/MsPacman-v5
+  NameThisGame                   python train.py --env ALE/NameThisGame-v5
+  Othello                        python train.py --env ALE/Othello-v5
+  Pacman                         python train.py --env ALE/Pacman-v5
+  Phoenix                        python train.py --env ALE/Phoenix-v5
+  Pitfall                        python train.py --env ALE/Pitfall-v5
+  Pitfall2                       python train.py --env ALE/Pitfall2-v5
+  Pong                           python train.py --env ALE/Pong-v5
+  Pooyan                         python train.py --env ALE/Pooyan-v5
+  PrivateEye                     python train.py --env ALE/PrivateEye-v5
+  Qbert                          python train.py --env ALE/Qbert-v5
+  Riverraid                      python train.py --env ALE/Riverraid-v5
+  RoadRunner                     python train.py --env ALE/RoadRunner-v5
+  Robotank                       python train.py --env ALE/Robotank-v5
+  Seaquest                       python train.py --env ALE/Seaquest-v5
+  SirLancelot                    python train.py --env ALE/SirLancelot-v5
+  Skiing                         python train.py --env ALE/Skiing-v5
+  Solaris                        python train.py --env ALE/Solaris-v5
+  SpaceInvaders                  python train.py --env ALE/SpaceInvaders-v5
+  SpaceWar                       python train.py --env ALE/SpaceWar-v5
+  StarGunner                     python train.py --env ALE/StarGunner-v5
+  Superman                       python train.py --env ALE/Superman-v5
+  Surround                       python train.py --env ALE/Surround-v5
+  Tennis                         python train.py --env ALE/Tennis-v5
+  Tetris                         python train.py --env ALE/Tetris-v5
+  TicTacToe3D                    python train.py --env ALE/TicTacToe3D-v5
+  TimePilot                      python train.py --env ALE/TimePilot-v5
+  Trondead                       python train.py --env ALE/Trondead-v5
+  Turmoil                        python train.py --env ALE/Turmoil-v5
+  Tutankham                      python train.py --env ALE/Tutankham-v5
+  UpNDown                        python train.py --env ALE/UpNDown-v5
+  Venture                        python train.py --env ALE/Venture-v5
+  VideoCheckers                  python train.py --env ALE/VideoCheckers-v5
+  VideoChess                     python train.py --env ALE/VideoChess-v5
+  VideoCube                      python train.py --env ALE/VideoCube-v5
+  VideoPinball                   python train.py --env ALE/VideoPinball-v5
+  WizardOfWor                    python train.py --env ALE/WizardOfWor-v5
+  WordZapper                     python train.py --env ALE/WordZapper-v5
+  YarsRevenge                    python train.py --env ALE/YarsRevenge-v5
+  Zaxxon                         python train.py --env ALE/Zaxxon-v5
+
+
+================================================================================
+MUJOCO (33 environments)
+================================================================================
+
+  Ant                                 python train.py --env Ant-v5
+    Available versions: 5, 4, 3, 2
+  HalfCheetah                         python train.py --env HalfCheetah-v5
+    Available versions: 5, 4, 3, 2
+  Hopper                              python train.py --env Hopper-v5
+    Available versions: 5, 4, 3, 2
+  Humanoid                            python train.py --env Humanoid-v5
+    Available versions: 5, 4, 3, 2
+  HumanoidStandup                     python train.py --env HumanoidStandup-v5
+    Available versions: 5, 4, 2
+  Pusher                              python train.py --env Pusher-v5
+    Available versions: 5, 4, 2
+  Reacher                             python train.py --env Reacher-v5
+    Available versions: 5, 4, 2
+  Swimmer                             python train.py --env Swimmer-v5
+    Available versions: 5, 4, 3, 2
+  Walker2d                            python train.py --env Walker2d-v5
+    Available versions: 5, 4, 3, 2
+
+================================================================================
+OTHER (250 environments)
+================================================================================
+
+  Adventure                           python train.py --env Adventure-v4
+    Available versions: 4, 0
+  AdventureNoFrameskip                python train.py --env AdventureNoFrameskip-v4
+    Available versions: 4, 0
+  AirRaid                             python train.py --env AirRaid-v4
+    Available versions: 4, 0
+  AirRaidNoFrameskip                  python train.py --env AirRaidNoFrameskip-v4
+    Available versions: 4, 0
+  Alien                               python train.py --env Alien-v4
+    Available versions: 4, 0
+  AlienNoFrameskip                    python train.py --env AlienNoFrameskip-v4
+    Available versions: 4, 0
+  Amidar                              python train.py --env Amidar-v4
+    Available versions: 4, 0
+  AmidarNoFrameskip                   python train.py --env AmidarNoFrameskip-v4
+    Available versions: 4, 0
+  Assault                             python train.py --env Assault-v4
+    Available versions: 4, 0
+  AssaultNoFrameskip                  python train.py --env AssaultNoFrameskip-v4
+    Available versions: 4, 0
+  Asterix                             python train.py --env Asterix-v4
+    Available versions: 4, 0
+  AsterixNoFrameskip                  python train.py --env AsterixNoFrameskip-v4
+    Available versions: 4, 0
+  Asteroids                           python train.py --env Asteroids-v4
+    Available versions: 4, 0
+  AsteroidsNoFrameskip                python train.py --env AsteroidsNoFrameskip-v4
+    Available versions: 4, 0
+  Atlantis                            python train.py --env Atlantis-v4
+    Available versions: 4, 0
+  AtlantisNoFrameskip                 python train.py --env AtlantisNoFrameskip-v4
+    Available versions: 4, 0
+  BankHeist                           python train.py --env BankHeist-v4
+    Available versions: 4, 0
+  BankHeistNoFrameskip                python train.py --env BankHeistNoFrameskip-v4
+    Available versions: 4, 0
+  BattleZone                          python train.py --env BattleZone-v4
+    Available versions: 4, 0
+  BattleZoneNoFrameskip               python train.py --env BattleZoneNoFrameskip-v4
+    Available versions: 4, 0
+  BeamRider                           python train.py --env BeamRider-v4
+    Available versions: 4, 0
+  BeamRiderNoFrameskip                python train.py --env BeamRiderNoFrameskip-v4
+    Available versions: 4, 0
+  Berzerk                             python train.py --env Berzerk-v4
+    Available versions: 4, 0
+  BerzerkNoFrameskip                  python train.py --env BerzerkNoFrameskip-v4
+    Available versions: 4, 0
+  Bowling                             python train.py --env Bowling-v4
+    Available versions: 4, 0
+  BowlingNoFrameskip                  python train.py --env BowlingNoFrameskip-v4
+    Available versions: 4, 0
+  Boxing                              python train.py --env Boxing-v4
+    Available versions: 4, 0
+  BoxingNoFrameskip                   python train.py --env BoxingNoFrameskip-v4
+    Available versions: 4, 0
+  Breakout                            python train.py --env Breakout-v4
+    Available versions: 4, 0
+  BreakoutNoFrameskip                 python train.py --env BreakoutNoFrameskip-v4
+    Available versions: 4, 0
+  Carnival                            python train.py --env Carnival-v4
+    Available versions: 4, 0
+  CarnivalNoFrameskip                 python train.py --env CarnivalNoFrameskip-v4
+    Available versions: 4, 0
+  Centipede                           python train.py --env Centipede-v4
+    Available versions: 4, 0
+  CentipedeNoFrameskip                python train.py --env CentipedeNoFrameskip-v4
+    Available versions: 4, 0
+  ChopperCommand                      python train.py --env ChopperCommand-v4
+    Available versions: 4, 0
+  ChopperCommandNoFrameskip           python train.py --env ChopperCommandNoFrameskip-v4
+    Available versions: 4, 0
+  CrazyClimber                        python train.py --env CrazyClimber-v4
+    Available versions: 4, 0
+  CrazyClimberNoFrameskip             python train.py --env CrazyClimberNoFrameskip-v4
+    Available versions: 4, 0
+  Defender                            python train.py --env Defender-v4
+    Available versions: 4, 0
+  DefenderNoFrameskip                 python train.py --env DefenderNoFrameskip-v4
+    Available versions: 4, 0
+  DemonAttack                         python train.py --env DemonAttack-v4
+    Available versions: 4, 0
+  DemonAttackNoFrameskip              python train.py --env DemonAttackNoFrameskip-v4
+    Available versions: 4, 0
+  DoubleDunk                          python train.py --env DoubleDunk-v4
+    Available versions: 4, 0
+  DoubleDunkNoFrameskip               python train.py --env DoubleDunkNoFrameskip-v4
+    Available versions: 4, 0
+  ElevatorAction                      python train.py --env ElevatorAction-v4
+    Available versions: 4, 0
+  ElevatorActionNoFrameskip           python train.py --env ElevatorActionNoFrameskip-v4
+    Available versions: 4, 0
+  Enduro                              python train.py --env Enduro-v4
+    Available versions: 4, 0
+  EnduroNoFrameskip                   python train.py --env EnduroNoFrameskip-v4
+    Available versions: 4, 0
+  FishingDerby                        python train.py --env FishingDerby-v4
+    Available versions: 4, 0
+  FishingDerbyNoFrameskip             python train.py --env FishingDerbyNoFrameskip-v4
+    Available versions: 4, 0
+  Freeway                             python train.py --env Freeway-v4
+    Available versions: 4, 0
+  FreewayNoFrameskip                  python train.py --env FreewayNoFrameskip-v4
+    Available versions: 4, 0
+  Frostbite                           python train.py --env Frostbite-v4
+    Available versions: 4, 0
+  FrostbiteNoFrameskip                python train.py --env FrostbiteNoFrameskip-v4
+    Available versions: 4, 0
+  Gopher                              python train.py --env Gopher-v4
+    Available versions: 4, 0
+  GopherNoFrameskip                   python train.py --env GopherNoFrameskip-v4
+    Available versions: 4, 0
+  Gravitar                            python train.py --env Gravitar-v4
+    Available versions: 4, 0
+  GravitarNoFrameskip                 python train.py --env GravitarNoFrameskip-v4
+    Available versions: 4, 0
+  GymV21Environment                   python train.py --env GymV21Environment-v0
+  GymV26Environment                   python train.py --env GymV26Environment-v0
+  Hero                                python train.py --env Hero-v4
+    Available versions: 4, 0
+  HeroNoFrameskip                     python train.py --env HeroNoFrameskip-v4
+    Available versions: 4, 0
+  IceHockey                           python train.py --env IceHockey-v4
+    Available versions: 4, 0
+  IceHockeyNoFrameskip                python train.py --env IceHockeyNoFrameskip-v4
+    Available versions: 4, 0
+  Jamesbond                           python train.py --env Jamesbond-v4
+    Available versions: 4, 0
+  JamesbondNoFrameskip                python train.py --env JamesbondNoFrameskip-v4
+    Available versions: 4, 0
+  JourneyEscape                       python train.py --env JourneyEscape-v4
+    Available versions: 4, 0
+  JourneyEscapeNoFrameskip            python train.py --env JourneyEscapeNoFrameskip-v4
+    Available versions: 4, 0
+  Kangaroo                            python train.py --env Kangaroo-v4
+    Available versions: 4, 0
+  KangarooNoFrameskip                 python train.py --env KangarooNoFrameskip-v4
+    Available versions: 4, 0
+  Krull                               python train.py --env Krull-v4
+    Available versions: 4, 0
+  KrullNoFrameskip                    python train.py --env KrullNoFrameskip-v4
+    Available versions: 4, 0
+  KungFuMaster                        python train.py --env KungFuMaster-v4
+    Available versions: 4, 0
+  KungFuMasterNoFrameskip             python train.py --env KungFuMasterNoFrameskip-v4
+    Available versions: 4, 0
+  MontezumaRevenge                    python train.py --env MontezumaRevenge-v4
+    Available versions: 4, 0
+  MontezumaRevengeNoFrameskip         python train.py --env MontezumaRevengeNoFrameskip-v4
+    Available versions: 4, 0
+  MsPacman                            python train.py --env MsPacman-v4
+    Available versions: 4, 0
+  MsPacmanNoFrameskip                 python train.py --env MsPacmanNoFrameskip-v4
+    Available versions: 4, 0
+  NameThisGame                        python train.py --env NameThisGame-v4
+    Available versions: 4, 0
+  NameThisGameNoFrameskip             python train.py --env NameThisGameNoFrameskip-v4
+    Available versions: 4, 0
+  Phoenix                             python train.py --env Phoenix-v4
+    Available versions: 4, 0
+  PhoenixNoFrameskip                  python train.py --env PhoenixNoFrameskip-v4
+    Available versions: 4, 0
+  Pitfall                             python train.py --env Pitfall-v4
+    Available versions: 4, 0
+  PitfallNoFrameskip                  python train.py --env PitfallNoFrameskip-v4
+    Available versions: 4, 0
+  Pong                                python train.py --env Pong-v4
+    Available versions: 4, 0
+  PongNoFrameskip                     python train.py --env PongNoFrameskip-v4
+    Available versions: 4, 0
+  Pooyan                              python train.py --env Pooyan-v4
+    Available versions: 4, 0
+  PooyanNoFrameskip                   python train.py --env PooyanNoFrameskip-v4
+    Available versions: 4, 0
+  PrivateEye                          python train.py --env PrivateEye-v4
+    Available versions: 4, 0
+  PrivateEyeNoFrameskip               python train.py --env PrivateEyeNoFrameskip-v4
+    Available versions: 4, 0
+  Qbert                               python train.py --env Qbert-v4
+    Available versions: 4, 0
+  QbertNoFrameskip                    python train.py --env QbertNoFrameskip-v4
+    Available versions: 4, 0
+  Riverraid                           python train.py --env Riverraid-v4
+    Available versions: 4, 0
+  RiverraidNoFrameskip                python train.py --env RiverraidNoFrameskip-v4
+    Available versions: 4, 0
+  RoadRunner                          python train.py --env RoadRunner-v4
+    Available versions: 4, 0
+  RoadRunnerNoFrameskip               python train.py --env RoadRunnerNoFrameskip-v4
+    Available versions: 4, 0
+  Robotank                            python train.py --env Robotank-v4
+    Available versions: 4, 0
+  RobotankNoFrameskip                 python train.py --env RobotankNoFrameskip-v4
+    Available versions: 4, 0
+  Seaquest                            python train.py --env Seaquest-v4
+    Available versions: 4, 0
+  SeaquestNoFrameskip                 python train.py --env SeaquestNoFrameskip-v4
+    Available versions: 4, 0
+  Skiing                              python train.py --env Skiing-v4
+    Available versions: 4, 0
+  SkiingNoFrameskip                   python train.py --env SkiingNoFrameskip-v4
+    Available versions: 4, 0
+  Solaris                             python train.py --env Solaris-v4
+    Available versions: 4, 0
+  SolarisNoFrameskip                  python train.py --env SolarisNoFrameskip-v4
+    Available versions: 4, 0
+  SpaceInvaders                       python train.py --env SpaceInvaders-v4
+    Available versions: 4, 0
+  SpaceInvadersNoFrameskip            python train.py --env SpaceInvadersNoFrameskip-v4
+    Available versions: 4, 0
+  StarGunner                          python train.py --env StarGunner-v4
+    Available versions: 4, 0
+  StarGunnerNoFrameskip               python train.py --env StarGunnerNoFrameskip-v4
+    Available versions: 4, 0
+  Tennis                              python train.py --env Tennis-v4
+    Available versions: 4, 0
+  TennisNoFrameskip                   python train.py --env TennisNoFrameskip-v4
+    Available versions: 4, 0
+  TimePilot                           python train.py --env TimePilot-v4
+    Available versions: 4, 0
+  TimePilotNoFrameskip                python train.py --env TimePilotNoFrameskip-v4
+    Available versions: 4, 0
+  Tutankham                           python train.py --env Tutankham-v4
+    Available versions: 4, 0
+  TutankhamNoFrameskip                python train.py --env TutankhamNoFrameskip-v4
+    Available versions: 4, 0
+  UpNDown                             python train.py --env UpNDown-v4
+    Available versions: 4, 0
+  UpNDownNoFrameskip                  python train.py --env UpNDownNoFrameskip-v4
+    Available versions: 4, 0
+  Venture                             python train.py --env Venture-v4
+    Available versions: 4, 0
+  VentureNoFrameskip                  python train.py --env VentureNoFrameskip-v4
+    Available versions: 4, 0
+  VideoPinball                        python train.py --env VideoPinball-v4
+    Available versions: 4, 0
+  VideoPinballNoFrameskip             python train.py --env VideoPinballNoFrameskip-v4
+    Available versions: 4, 0
+  WizardOfWor                         python train.py --env WizardOfWor-v4
+    Available versions: 4, 0
+  WizardOfWorNoFrameskip              python train.py --env WizardOfWorNoFrameskip-v4
+    Available versions: 4, 0
+  YarsRevenge                         python train.py --env YarsRevenge-v4
+    Available versions: 4, 0
+  YarsRevengeNoFrameskip              python train.py --env YarsRevengeNoFrameskip-v4
+    Available versions: 4, 0
+  Zaxxon                              python train.py --env Zaxxon-v4
+    Available versions: 4, 0
+  ZaxxonNoFrameskip                   python train.py --env ZaxxonNoFrameskip-v4
+    Available versions: 4, 0
+
+================================================================================
+MINIGRID (81 environments)
+================================================================================
+
+  BlockedUnlockPickup                 python train.py --env MiniGrid-BlockedUnlockPickup-v0
+  DistShift1                          python train.py --env MiniGrid-DistShift1-v0
+  DistShift2                          python train.py --env MiniGrid-DistShift2-v0
+  DoorKey-16x16                       python train.py --env MiniGrid-DoorKey-16x16-v0
+  DoorKey-5x5                         python train.py --env MiniGrid-DoorKey-5x5-v0
+  DoorKey-6x6                         python train.py --env MiniGrid-DoorKey-6x6-v0
+  DoorKey-8x8                         python train.py --env MiniGrid-DoorKey-8x8-v0
+  Dynamic-Obstacles-16x16             python train.py --env MiniGrid-Dynamic-Obstacles-16x16-v0
+  Dynamic-Obstacles-5x5               python train.py --env MiniGrid-Dynamic-Obstacles-5x5-v0
+  Dynamic-Obstacles-6x6               python train.py --env MiniGrid-Dynamic-Obstacles-6x6-v0
+  Dynamic-Obstacles-8x8               python train.py --env MiniGrid-Dynamic-Obstacles-8x8-v0
+  Dynamic-Obstacles-Random-5x5        python train.py --env MiniGrid-Dynamic-Obstacles-Random-5x5-v0
+  Dynamic-Obstacles-Random-6x6        python train.py --env MiniGrid-Dynamic-Obstacles-Random-6x6-v0
+  Empty-16x16                         python train.py --env MiniGrid-Empty-16x16-v0
+  Empty-5x5                           python train.py --env MiniGrid-Empty-5x5-v0
+  Empty-6x6                           python train.py --env MiniGrid-Empty-6x6-v0
+  Empty-8x8                           python train.py --env MiniGrid-Empty-8x8-v0
+  Empty-Random-5x5                    python train.py --env MiniGrid-Empty-Random-5x5-v0
+  Empty-Random-6x6                    python train.py --env MiniGrid-Empty-Random-6x6-v0
+  Fetch-5x5-N2                        python train.py --env MiniGrid-Fetch-5x5-N2-v0
+  Fetch-6x6-N2                        python train.py --env MiniGrid-Fetch-6x6-N2-v0
+  Fetch-8x8-N3                        python train.py --env MiniGrid-Fetch-8x8-N3-v0
+  FourRooms                           python train.py --env MiniGrid-FourRooms-v0
+  GoToDoor-5x5                        python train.py --env MiniGrid-GoToDoor-5x5-v0
+  GoToDoor-6x6                        python train.py --env MiniGrid-GoToDoor-6x6-v0
+  GoToDoor-8x8                        python train.py --env MiniGrid-GoToDoor-8x8-v0
+  GoToObject-6x6-N2                   python train.py --env MiniGrid-GoToObject-6x6-N2-v0
+  GoToObject-8x8-N2                   python train.py --env MiniGrid-GoToObject-8x8-N2-v0
+  KeyCorridorS3R1                     python train.py --env MiniGrid-KeyCorridorS3R1-v0
+  KeyCorridorS3R2                     python train.py --env MiniGrid-KeyCorridorS3R2-v0
+  ... and 47 more environment types
+
+================================================================================
+TOTAL ENVIRONMENTS: 519 (415 + 104 MiniGrid)
+================================================================================
+
+NOTES:
+  - Classic Control: Simple environments for testing algorithms
+  - Box2D: Physics-based continuous control tasks
+  - Toy Text: Simple discrete environments
+  - Atari (ALE): Classic Atari 2600 games (requires ale-py)
+  - MuJoCo: Physics simulation environments (requires mujoco)
+
+TRAINING OPTIONS:
+  --timesteps N     : Number of timesteps to train (default: 100000)
+  --eval            : Run evaluation after training
+  --record          : Record video during evaluation
+  --n-eval-episodes : Number of evaluation episodes (default: 10)
+  --verbose        : Verbose output during training
