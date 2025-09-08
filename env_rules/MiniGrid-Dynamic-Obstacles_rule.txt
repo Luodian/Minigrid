@@ -1,9 +1,3 @@
-MiniGrid-Dynamic-Obstacles Environment Rule Description
+Environment Rule Description
 
-- Video Prompt:
-    - Render a top-down grid (5x5, 6x6, 8x8, or 16x16) with gray outer walls. A red triangular agent starts at a fixed top-left position or random position (Random variants) facing right. The goal is a green square at the bottom-right corner. Moving ball obstacles (colored spheres) are scattered throughout the room and move randomly each turn. The agent must navigate to the goal while avoiding collision with moving obstacles. Contact with obstacles terminates the episode with penalty. Show the agent carefully moving around dynamically shifting obstacles to reach the goal.
-
-- Rule Summary:
-    - Objective: Navigate to the green goal square while avoiding collision with moving ball obstacles.
-    - Environment: Square grid (5x5 to 16x16) with outer walls, goal at bottom-right corner.
-    - Key mechanics: Success by reaching the goal.
+In this environment, the objective is to navigate to the green goal square while avoiding collision with moving ball obstacles. The environment is a square grid (5x5 to 16x16) with outer walls where the goal is at the bottom-right corner. The red triangular agent starts at a fixed top-left position or random position (Random variants) facing right. Moving ball obstacles (colored spheres) are scattered throughout the room and move randomly each turn. Contact with obstacles terminates the episode with penalty, so the agent must carefully navigate around the dynamically shifting obstacles to reach the goal. Success is achieved by reaching the goal.

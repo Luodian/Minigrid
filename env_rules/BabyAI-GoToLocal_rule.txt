@@ -1,9 +1,3 @@
-BabyAI-GoToLocal Environment Rule Description
+Environment Rule Description
 
-- Video Prompt:
-    - Render a top-down single room grid with gray outer walls. A red triangular agent starts in the room facing right. The room contains randomly placed objects including one target object (ball/box/key) and multiple distractor objects of various colors (red, green, blue, purple, yellow, grey). The agent must navigate to the specific target object indicated by the mission text "go to the {color} {type}". Walls block movement and sight. Show the agent moving and turning to reach the designated target object.
-
-- Rule Summary:
-    - Objective: Navigate to a specific target object (ball, box, or key) of a particular color as specified in the mission instruction.
-    - Environment: Single room (6x6 or 8x8 grid depending on room_size), surrounded by walls, no doors or internal structures.
-    - Key mechanics: Success by reaching the target object.
+In this environment, the objective is to navigate to a specific target object (ball, box, or key) of a particular color as specified in the mission instruction "go to the {color} {type}". The environment is a single room (6x6 or 8x8 grid depending on room_size), surrounded by walls with no doors or internal structures. The red triangular agent starts in the room facing right. The room contains randomly placed objects including one target object and multiple distractor objects of various colors (red, green, blue, purple, yellow, grey). Walls block movement and sight. The agent must navigate to the specific target object indicated by the mission text. Success is achieved by reaching the target object.

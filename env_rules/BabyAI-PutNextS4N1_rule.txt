@@ -1,9 +1,3 @@
-BabyAI-PutNextS4N1 Environment Rule Description
+Environment Rule Description
 
-- Video Prompt:
-    - Render a top-down two-room layout (4x4 rooms) connected by an opening with gray outer walls. A red triangular agent starts in the left room facing right. Each room contains one object (ball, box, or key) with different colors. The agent must pick up one specified object and drop it adjacent to another specified object as indicated by the mission "put the {color} {type} next to the {color} {type}". Show the agent moving between rooms, picking up the target object, navigating to the reference object, and dropping the carried object adjacent to it.
-
-- Rule Summary:
-    - Objective: Pick up a specified object and place it adjacent to another specified object using pickup and drop actions.
-    - Environment: Two connected 4x4 rooms (left and right) with a wall opening between them. Total grid approximately 7x4.
-    - Key mechanics: Success by place object adjacent to target.
+In this environment, the objective is to pick up a specified object and place it adjacent to another specified object using pickup and drop actions as indicated by the mission "put the {color} {type} next to the {color} {type}". The environment consists of two connected 4x4 rooms (left and right) with a wall opening between them, forming a total grid approximately 7x4. The red triangular agent starts in the left room facing right. Each room contains one object (ball, box, or key) with different colors. The agent must pick up one specified object and drop it adjacent to another specified object. Success is achieved by placing the object adjacent to the target.
