@@ -1,0 +1,118 @@
+# Environment Mapping: Rule Files to Environment IDs
+# This file maps each rule file to the specific environments it covers
+
+env_mapping:
+  BabyAI-GoToLocal_rule.txt:
+    - BabyAI-GoToLocalS6N3-v0
+    - BabyAI-GoToLocalS6N4-v0
+    
+  BabyAI-GoToObj_rule.txt:
+    - BabyAI-GoToObj-v0
+    - BabyAI-GoToObjS4-v0
+    - BabyAI-GoToObjS6-v1
+    
+  BabyAI-GoToRedBall_rule.txt:
+    - BabyAI-GoToRedBall-v0
+    - BabyAI-GoToRedBallNoDists-v0
+    
+  BabyAI-KeyCorridorS3R1_rule.txt:
+    - BabyAI-KeyCorridorS3R1-v0
+    
+  BabyAI-OneRoom_rule.txt:
+    - BabyAI-OneRoomS8-v0
+    - BabyAI-OneRoomS16-v0
+    
+  BabyAI-OpenDoor_rule.txt:
+    - BabyAI-OpenDoor-v0
+    - BabyAI-OpenDoorColor-v0
+    - BabyAI-OpenRedDoor-v0
+    
+  BabyAI-PutNextS4N1_rule.txt:
+    - BabyAI-PutNextS4N1-v0
+    
+  BabyAI-UnlockLocal_rule.txt:
+    - BabyAI-UnlockLocal-v0
+    
+  MiniGrid-DistShift_rule.txt:
+    - MiniGrid-DistShift1-v0
+    - MiniGrid-DistShift2-v0
+    
+  MiniGrid-DoorKey_rule.txt:
+    - MiniGrid-DoorKey-5x5-v0
+    - MiniGrid-DoorKey-8x8-v0
+    
+  MiniGrid-Dynamic-Obstacles_rule.txt:
+    - MiniGrid-Dynamic-Obstacles-5x5-v0
+    - MiniGrid-Dynamic-Obstacles-6x6-v0
+    - MiniGrid-Dynamic-Obstacles-8x8-v0
+    - MiniGrid-Dynamic-Obstacles-Random-6x6-v0
+    
+  MiniGrid-Empty_rule.txt:
+    - MiniGrid-Empty-16x16-v0
+    - MiniGrid-Empty-5x5-v0
+    - MiniGrid-Empty-6x6-v0
+    - MiniGrid-Empty-8x8-v0
+    - MiniGrid-Empty-Random-5x5-v0
+    - MiniGrid-Empty-Random-6x6-v0
+    
+  MiniGrid-KeyCorridorS3R2_rule.txt:
+    - MiniGrid-KeyCorridorS3R2-v0
+    
+  MiniGrid-LavaCrossing_rule.txt:
+    - MiniGrid-LavaCrossingS9N1-v0
+    
+  MiniGrid-LavaGap_rule.txt:
+    - MiniGrid-LavaGapS5-v0
+    - MiniGrid-LavaGapS6-v0
+    
+  MiniGrid-MultiRoom-N2-S4_rule.txt:
+    - MiniGrid-MultiRoom-N2-S4-v0
+    
+  MiniGrid-SimpleCrossing_rule.txt:
+    - MiniGrid-SimpleCrossingS9N1-v0
+    - MiniGrid-SimpleCrossingS9N3-v0
+
+# Reverse mapping: Environment ID to Rule File
+reverse_mapping:
+  BabyAI-GoToLocalS6N3-v0: BabyAI-GoToLocal_rule.txt
+  BabyAI-GoToLocalS6N4-v0: BabyAI-GoToLocal_rule.txt
+  BabyAI-GoToObj-v0: BabyAI-GoToObj_rule.txt
+  BabyAI-GoToObjS4-v0: BabyAI-GoToObj_rule.txt
+  BabyAI-GoToObjS6-v1: BabyAI-GoToObj_rule.txt
+  BabyAI-GoToRedBall-v0: BabyAI-GoToRedBall_rule.txt
+  BabyAI-GoToRedBallNoDists-v0: BabyAI-GoToRedBall_rule.txt
+  BabyAI-KeyCorridorS3R1-v0: BabyAI-KeyCorridorS3R1_rule.txt
+  BabyAI-OneRoomS16-v0: BabyAI-OneRoom_rule.txt
+  BabyAI-OneRoomS8-v0: BabyAI-OneRoom_rule.txt
+  BabyAI-OpenDoor-v0: BabyAI-OpenDoor_rule.txt
+  BabyAI-OpenDoorColor-v0: BabyAI-OpenDoor_rule.txt
+  BabyAI-OpenRedDoor-v0: BabyAI-OpenDoor_rule.txt
+  BabyAI-PutNextS4N1-v0: BabyAI-PutNextS4N1_rule.txt
+  BabyAI-UnlockLocal-v0: BabyAI-UnlockLocal_rule.txt
+  MiniGrid-DistShift1-v0: MiniGrid-DistShift_rule.txt
+  MiniGrid-DistShift2-v0: MiniGrid-DistShift_rule.txt
+  MiniGrid-DoorKey-5x5-v0: MiniGrid-DoorKey_rule.txt
+  MiniGrid-Dynamic-Obstacles-5x5-v0: MiniGrid-Dynamic-Obstacles_rule.txt
+  MiniGrid-Dynamic-Obstacles-6x6-v0: MiniGrid-Dynamic-Obstacles_rule.txt
+  MiniGrid-Dynamic-Obstacles-8x8-v0: MiniGrid-Dynamic-Obstacles_rule.txt
+  MiniGrid-Dynamic-Obstacles-Random-6x6-v0: MiniGrid-Dynamic-Obstacles_rule.txt
+  MiniGrid-Empty-16x16-v0: MiniGrid-Empty_rule.txt
+  MiniGrid-Empty-5x5-v0: MiniGrid-Empty_rule.txt
+  MiniGrid-Empty-6x6-v0: MiniGrid-Empty_rule.txt
+  MiniGrid-Empty-8x8-v0: MiniGrid-Empty_rule.txt
+  MiniGrid-Empty-Random-5x5-v0: MiniGrid-Empty_rule.txt
+  MiniGrid-Empty-Random-6x6-v0: MiniGrid-Empty_rule.txt
+  MiniGrid-KeyCorridorS3R2-v0: MiniGrid-KeyCorridorS3R2_rule.txt
+  MiniGrid-LavaCrossingS9N1-v0: MiniGrid-LavaCrossing_rule.txt
+  MiniGrid-LavaGapS5-v0: MiniGrid-LavaGap_rule.txt
+  MiniGrid-LavaGapS6-v0: MiniGrid-LavaGap_rule.txt
+  MiniGrid-MultiRoom-N2-S4-v0: MiniGrid-MultiRoom-N2-S4_rule.txt
+  MiniGrid-SimpleCrossingS9N1-v0: MiniGrid-SimpleCrossing_rule.txt
+  MiniGrid-SimpleCrossingS9N3-v0: MiniGrid-SimpleCrossing_rule.txt
+
+# Summary statistics
+summary:
+  total_environments: 35
+  total_rule_files: 17
+  environments_with_shared_rules: 27
+  environments_with_unique_rules: 8

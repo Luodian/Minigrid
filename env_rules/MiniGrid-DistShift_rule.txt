@@ -1,0 +1,9 @@
+MiniGrid-DistShift Environment Rule Description
+
+- Video Prompt:
+    - Render a top-down 9x7 grid with gray outer walls. A red triangular agent starts at position (1,1) facing right. The goal is a green square at position (7,1) in the top-right area. Two horizontal lava strips block the path: one at row 1 spanning positions (3,1) to (5,1), and another at row 2 or 5 (depending on variant) spanning the same horizontal range. The agent must navigate around the lava obstacles to reach the green goal. Lava terminates the episode on contact. Show the agent finding a path around the lava strips to reach the goal.
+
+- Rule Summary:
+    - Objective: Navigate to the green goal square while avoiding lava obstacles.
+    - Environment: 9x7 grid with outer walls, agent starts at (1,1), goal at (7,1), two horizontal lava strips create obstacles.
+    - Key mechanics: Success by reach goal.

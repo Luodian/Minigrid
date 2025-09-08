@@ -1,0 +1,9 @@
+BabyAI-UnlockLocal Environment Rule Description
+
+- Video Prompt:
+    - Render a top-down single room grid with gray outer walls. A red triangular agent starts in the room facing right. The room contains one locked door and a matching colored key. The door is initially locked (state=2) and blocks passage. The agent must pick up the key, navigate to the locked door, and use the toggle action to unlock and open it. Show the agent collecting the key, approaching the door, and toggling it to complete the mission.
+
+- Rule Summary:
+    - Objective: Open the locked door by first collecting the matching colored key and then using toggle action on the door.
+    - Environment: Single room (default 8x8) with gray outer walls, containing one locked door and one matching key.
+    - Key mechanics: Success by open the door.

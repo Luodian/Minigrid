@@ -1,0 +1,9 @@
+MiniGrid-Empty Environment Rule Description
+
+- Video Prompt:
+    - Render a top-down empty grid (5x5, 6x6, 8x8, or 16x16) with gray outer walls. A red triangular agent starts at position (1,1) or random position (Random variants) facing right. The goal is a green square at the bottom-right corner (size-2, size-2). The room is completely empty with no obstacles between agent and goal. The agent must navigate directly to the green goal square. Show the agent moving across the empty space to reach the goal in the most direct path.
+
+- Rule Summary:
+    - Objective: Navigate to the green goal square in an empty room with no obstacles.
+    - Environment: Square grid (5x5, 6x6, 8x8, or 16x16) with outer walls only, goal at bottom-right corner.
+    - Key mechanics: Success by reach goal.
