@@ -6,4 +6,4 @@ BabyAI-OpenDoor Environment Rule Description
 - Rule Summary:
     - Objective: Open a specific door as indicated in the mission text (e.g., "open the red door" or "open the door").
     - Environment: Various layouts depending on variant - single room with 4 doors (OpenDoor), simple 2-room setup (OpenRedDoor), or multi-room maze (Open). All doors are unlocked.
-    - Key mechanics: Success by open target door.
+    - Key mechanics: Success by opening the target door.

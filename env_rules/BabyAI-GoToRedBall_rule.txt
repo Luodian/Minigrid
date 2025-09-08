@@ -1,9 +1,9 @@
 BabyAI-GoToRedBall Environment Rule Description
 
 - Video Prompt:
-    - Render a top-down 8x8 single room grid with gray outer walls. A red triangular agent starts at the center position facing right. The room contains one red ball (the target) and multiple distractor objects. In the base variant, distractors are various colored objects. In the NoDists variant, only the red ball is present. The agent must navigate to the red ball. Walls block movement and sight. Show the agent moving and turning to reach the red ball to complete the mission.
+    - Render a top-down 8x8 single room grid with gray outer walls. A red triangular agent starts in the room facing right. The room contains one red ball (the target) and multiple distractor objects. In the base variant, distractors are various colored objects. In the NoDists variant, only the red ball is present. The agent must navigate to the red ball. Walls block movement and sight. Show the agent moving and turning to reach the red ball to complete the mission.
 
 - Rule Summary:
     - Objective: Navigate to the red ball as specified in the mission "go to the red ball".
     - Environment: Single 8x8 room surrounded by walls, no doors or internal structures.
-    - Key mechanics: Success by reach red ball.
+    - Key mechanics: Success by reaching the red ball.

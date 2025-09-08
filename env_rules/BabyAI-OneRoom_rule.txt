@@ -1,9 +1,9 @@
 BabyAI-OneRoom Environment Rule Description
 
 - Video Prompt:
-    - Render a top-down single room grid with gray outer walls. A red triangular agent starts at the center position facing right. The room contains one ball placed randomly within the room boundaries. The agent must navigate to the ball and pick it up. Walls block movement and sight. Show the agent moving and turning to reach the ball and executing the pickup action to complete the mission.
+    - Render a top-down single room grid with gray outer walls. A red triangular agent starts in the room facing right. The room contains one ball placed randomly within the room boundaries. The agent must navigate to the ball and pick it up. Walls block movement and sight. Show the agent moving and turning to reach the ball and executing the pickup action to complete the mission.
 
 - Rule Summary:
     - Objective: Pick up the single ball in the room as specified in the mission "pick up the ball".
     - Environment: Single room (8x8, 12x12, 16x16, or 20x20 depending on variant), surrounded by walls, no doors or internal structures.
-    - Key mechanics: Success by pick up the ball.
+    - Key mechanics: Success by picking up the ball.

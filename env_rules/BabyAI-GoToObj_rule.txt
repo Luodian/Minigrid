@@ -1,9 +1,9 @@
 BabyAI-GoToObj Environment Rule Description
 
 - Video Prompt:
-    - Render a top-down single room grid with gray outer walls. A red triangular agent starts at the center position facing right. The room contains one randomly placed object (ball, box, or key) with random color (red, green, blue, purple, yellow, grey). The agent must navigate to this single target object. Walls block movement and sight. Show the agent moving and turning to reach the object to complete the mission.
+    - Render a top-down single room grid with gray outer walls. A red triangular agent starts in the room facing right. The room contains one randomly placed object (ball, box, or key) with random color (red, green, blue, purple, yellow, grey). The agent must navigate to this single target object. Walls block movement and sight. Show the agent moving and turning to reach the object to complete the mission.
 
 - Rule Summary:
     - Objective: Navigate to the single randomly generated object in the room as specified in the mission "go to the {color} {type}".
     - Environment: Single room (4x4, 6x6, or 8x8 grid depending on variant), surrounded by walls, no doors or internal structures.
-    - Key mechanics: Success by reach target object.
+    - Key mechanics: Success by reaching the target object.

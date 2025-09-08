@@ -1,9 +1,9 @@
 MiniGrid-LavaGap Environment Rule Description
 
 - Video Prompt:
-    - Render a top-down 5x5 or 6x6 grid with gray outer walls. A red triangular agent starts at position (1,1) facing right. The goal is a green square at the bottom-right corner. A vertical lava wall (red hazard stripe) divides the room with a single gap opening that allows safe passage. The agent must find and pass through the gap while avoiding lava contact to reach the goal. Stepping on lava terminates the episode immediately. Show the agent navigating to find the gap and passing through safely to reach the goal.
+    - Render a top-down 5x5 or 6x6 grid with gray outer walls. A red triangular agent starts in the top-left corner facing right. The goal is a green square at the bottom-right corner. A vertical lava wall (red hazard stripe) divides the room with a single gap opening that allows safe passage. The agent must find and pass through the gap while avoiding lava contact to reach the goal. Stepping on lava terminates the episode immediately. Show the agent navigating to find the gap and passing through safely to reach the goal.
 
 - Rule Summary:
     - Objective: Navigate to the green goal square by passing through a narrow gap in a vertical lava wall.
     - Environment: Square grid (5x5 or 6x6) with outer walls and a vertical lava wall with single gap opening.
-    - Key mechanics: Success by reach goal.
+    - Key mechanics: Success by reaching the goal.
