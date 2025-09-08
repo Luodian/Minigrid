@@ -1,0 +1,3 @@
+Environment Rule Description
+
+In this environment, the objective is to open a specific door as indicated in the mission text (e.g., "open the red door" or "open the door"). The environment has various layouts depending on variant - single room with 4 doors (OpenDoor), simple 2-room setup (OpenRedDoor), or multi-room maze (Open), with all doors initially closed but unlocked. The red triangular agent starts in a room with multiple colored doors. The agent must navigate to the specific door indicated by the mission and use the toggle action to open it. Success is achieved by opening the target door.

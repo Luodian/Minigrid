@@ -1,0 +1,3 @@
+Environment Rule Description
+
+In this environment, the objective is to navigate to the green goal square while avoiding lava obstacles. The environment is a 9x7 grid with outer walls where the agent starts in the top-left corner facing right and the goal is in the top-right area. Two horizontal lava strips block the path, positioned to create navigation challenges (the second strip's row varies by variant). Stepping on lava is forbidden and causes immediate death/termination, so the agent must navigate around the lava obstacles to reach the green goal. Success is achieved by reaching the goal.

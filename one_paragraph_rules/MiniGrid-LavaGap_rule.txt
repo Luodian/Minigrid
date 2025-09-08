@@ -1,0 +1,3 @@
+Environment Rule Description
+
+In this environment, the objective is to navigate to the green goal square by passing through a narrow gap in a vertical lava wall. The environment consists of a square grid (5x5 or 6x6) with outer walls and a vertical lava wall dividing the room with a single gap opening that allows safe passage. The red triangular agent starts in the top-left corner facing right, and the goal is a green square at the bottom-right corner. Stepping on lava is forbidden and causes immediate death/termination, so the agent must find and pass through the gap while avoiding lava contact. Success is achieved by reaching the goal.
