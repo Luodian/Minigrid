@@ -254,10 +254,10 @@ class UnifiedPPOTrainer:
         # Reward threshold checkpoint callback
         reward_checkpoint_callback = None
         if reward_checkpoint_threshold is not None:
-            os.makedirs("./models/checkpoints/", exist_ok=True)
+            os.makedirs("models/checkpoints/", exist_ok=True)
             reward_checkpoint_callback = RewardThresholdCheckpointCallback(
                 reward_threshold=reward_checkpoint_threshold,
-                save_path="./models/checkpoints/",
+                save_path="models/checkpoints/",
                 model_name=model_name if model_name else f"ppo_{self.env_type}_{self.env_id}",
                 verbose=verbose
             )
@@ -270,8 +270,8 @@ class UnifiedPPOTrainer:
             early_stopping,
             reward_checkpoint_callback,
             eval_env,
-            best_model_save_path=f"./models/{model_name}/",
-            log_path="./logs/",
+            best_model_save_path=f"models/{model_name}/",
+            log_path="logs/",
             eval_freq=eval_freq,
             deterministic=True,
             render=False,
@@ -295,7 +295,7 @@ class UnifiedPPOTrainer:
         # Checkpointing
         checkpoint_callback = CheckpointCallback(
             save_freq=save_freq,
-            save_path="./models/checkpoints/",
+            save_path="models/checkpoints/",
             name_prefix=model_name
         )
         callbacks.append(checkpoint_callback)
