@@ -70,6 +70,7 @@ Examples:
     parser.add_argument("--patience", type=int, default=10, help="Early stopping patience")
     parser.add_argument("--min-improvement", type=float, default=0.01, help="Minimum improvement for early stopping")
     parser.add_argument("--reward-threshold", type=float, help="Stop training when reward threshold is reached")
+    parser.add_argument("--reward-checkpoint-threshold", type=float, help="Save checkpoint when reward threshold is reached")
     
     # Model parameters
     parser.add_argument("--model", type=str, help="Path to saved model (for testing/recording)")
@@ -149,6 +150,7 @@ Examples:
                 patience=args.patience,
                 min_improvement=args.min_improvement,
                 reward_threshold=args.reward_threshold,
+                reward_checkpoint_threshold=args.reward_checkpoint_threshold,
                 model_name=f"{args.preset}_{env_id}" if not args.model_name else args.model_name,
                 verbose=args.verbose
             )
@@ -243,6 +245,7 @@ Examples:
             patience=args.patience,
             min_improvement=args.min_improvement,
             reward_threshold=args.reward_threshold,
+            reward_checkpoint_threshold=args.reward_checkpoint_threshold,
             model_name=args.model_name,
             verbose=args.verbose
         )

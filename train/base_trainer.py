@@ -56,11 +56,37 @@ class EarlyStoppingCallback(BaseCallback):
         return True
 
 
+class RewardThresholdCheckpointCallback(BaseCallback):
+    """Save checkpoint when reward threshold is reached"""
+    def __init__(self, reward_threshold: float, save_path: str, model_name: str, verbose=0):
+        super().__init__(verbose)
+        self.reward_threshold = reward_threshold
+        self.save_path = save_path
+        self.model_name = model_name
+        self.best_mean_reward = -np.inf
+        self.checkpoint_saved = False
+        
+    def _on_step(self) -> bool:
+        return True
+    
+    def check_and_save(self, mean_reward: float, model):
+        """Check if threshold is reached and save checkpoint"""
+        if mean_reward >= self.reward_threshold and not self.checkpoint_saved:
+            checkpoint_path = os.path.join(self.save_path, f"{self.model_name}_reward_{self.reward_threshold:.2f}")
+            model.save(checkpoint_path)
+            if self.verbose > 0:
+                print(f"\n✓ Reward threshold {self.reward_threshold:.2f} reached! Saved checkpoint to {checkpoint_path}")
+            self.checkpoint_saved = True
+            return True
+        return False
+
+
 class EvalWithEarlyStopping(EvalCallback):
     """Evaluation callback with integrated early stopping"""
-    def __init__(self, early_stop_callback, *args, **kwargs):
+    def __init__(self, early_stop_callback, reward_checkpoint_callback=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.early_stop = early_stop_callback
+        self.reward_checkpoint = reward_checkpoint_callback
     
     def _on_step(self) -> bool:
         result = super()._on_step()
@@ -68,6 +94,12 @@ class EvalWithEarlyStopping(EvalCallback):
         if self.eval_freq > 0 and self.n_calls % self.eval_freq == 0:
             if len(self.evaluations_results) > 0:
                 last_mean_reward = self.evaluations_results[-1][0]
+                
+                # Check for reward threshold checkpoint
+                if self.reward_checkpoint:
+                    self.reward_checkpoint.check_and_save(last_mean_reward, self.model)
+                
+                # Check early stopping
                 should_continue = self.early_stop.check_improvement(last_mean_reward)
                 if not should_continue:
                     return False
@@ -179,6 +211,7 @@ class UnifiedPPOTrainer:
         patience: int = 10,
         min_improvement: float = 0.01,
         reward_threshold: Optional[float] = None,
+        reward_checkpoint_threshold: Optional[float] = None,
         model_name: Optional[str] = None,
         verbose: int = 1
     ) -> PPO:
@@ -218,12 +251,24 @@ class UnifiedPPOTrainer:
             verbose=verbose
         )
         
+        # Reward threshold checkpoint callback
+        reward_checkpoint_callback = None
+        if reward_checkpoint_threshold is not None:
+            os.makedirs("./models/checkpoints/", exist_ok=True)
+            reward_checkpoint_callback = RewardThresholdCheckpointCallback(
+                reward_threshold=reward_checkpoint_threshold,
+                save_path="./models/checkpoints/",
+                model_name=model_name if model_name else f"ppo_{self.env_type}_{self.env_id}",
+                verbose=verbose
+            )
+        
         # Evaluation with early stopping
         if not model_name:
             model_name = f"ppo_{self.env_type}_{self.env_id}"
         
         eval_callback = EvalWithEarlyStopping(
             early_stopping,
+            reward_checkpoint_callback,
             eval_env,
             best_model_save_path=f"./models/{model_name}/",
             log_path="./logs/",
