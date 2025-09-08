@@ -18,6 +18,8 @@ from stable_baselines3.common.callbacks import (
     EvalCallback, CheckpointCallback, CallbackList, 
     StopTrainingOnRewardThreshold, BaseCallback
 )
+import time
+from datetime import datetime
 from stable_baselines3.common.monitor import Monitor
 from typing import Optional, Dict, Any, Callable
 
@@ -73,12 +75,59 @@ class RewardThresholdCheckpointCallback(BaseCallback):
         """Check if threshold is reached and save checkpoint"""
         if mean_reward >= self.reward_threshold and not self.checkpoint_saved:
             checkpoint_path = os.path.join(self.save_path, f"{self.model_name}_reward_{self.reward_threshold:.2f}")
+            
+            # Visual notification
+            print("\n" + "🎯"*40)
+            print(f"🏆 REWARD THRESHOLD REACHED! 🏆")
+            print("🎯"*40)
+            print(f"📈 Mean Reward: {mean_reward:.3f} >= {self.reward_threshold:.2f}")
+            print(f"💾 Saving special checkpoint...")
+            
             model.save(checkpoint_path)
-            if self.verbose > 0:
-                print(f"\n✓ Reward threshold {self.reward_threshold:.2f} reached! Saved checkpoint to {checkpoint_path}")
+            
+            print(f"✅ CHECKPOINT SAVED!")
+            print(f"📁 Location: {checkpoint_path}.zip")
+            print("🎯"*40 + "\n")
+            
             self.checkpoint_saved = True
             return True
         return False
+
+
+class VisualCheckpointCallback(CheckpointCallback):
+    """Enhanced checkpoint callback with clear visual indicators"""
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.checkpoint_count = 0
+        self.start_time = time.time()
+        
+    def _on_step(self) -> bool:
+        if self.n_calls % self.save_freq == 0:
+            self.checkpoint_count += 1
+            elapsed = time.time() - self.start_time
+            timestamp = datetime.now().strftime("%H:%M:%S")
+            
+            # Visual separator
+            print("\n" + "="*80)
+            print(f"🔔 CHECKPOINT SAVE IN PROGRESS #{self.checkpoint_count}")
+            print("="*80)
+            
+            # Save the model
+            path = os.path.join(self.save_path, f"{self.name_prefix}_{self.num_timesteps}_steps")
+            self.model.save(path)
+            
+            # Success message
+            print(f"✅ CHECKPOINT SAVED SUCCESSFULLY!")
+            print(f"📁 Location: {path}.zip")
+            print(f"⏱️  Time: {timestamp} (Elapsed: {elapsed/60:.1f} minutes)")
+            print(f"📊 Steps: {self.num_timesteps:,}")
+            print(f"🔢 Checkpoint #: {self.checkpoint_count}")
+            print("="*80 + "\n")
+            
+            if self.verbose > 0:
+                print(f"Saving model checkpoint to {path}")
+                
+        return True
 
 
 class EvalWithEarlyStopping(EvalCallback):
@@ -254,10 +303,10 @@ class UnifiedPPOTrainer:
         # Reward threshold checkpoint callback
         reward_checkpoint_callback = None
         if reward_checkpoint_threshold is not None:
-            os.makedirs("models/checkpoints/", exist_ok=True)
+            os.makedirs("models", exist_ok=True)
             reward_checkpoint_callback = RewardThresholdCheckpointCallback(
                 reward_threshold=reward_checkpoint_threshold,
-                save_path="models/checkpoints/",
+                save_path="models",
                 model_name=model_name if model_name else f"ppo_{self.env_type}_{self.env_id}",
                 verbose=verbose
             )
@@ -292,10 +341,10 @@ class UnifiedPPOTrainer:
                 verbose=0
             ))
         
-        # Checkpointing
-        checkpoint_callback = CheckpointCallback(
+        # Checkpointing with visual indicators
+        checkpoint_callback = VisualCheckpointCallback(
             save_freq=save_freq,
-            save_path="models/checkpoints/",
+            save_path="models",
             name_prefix=model_name
         )
         callbacks.append(checkpoint_callback)
@@ -312,10 +361,18 @@ class UnifiedPPOTrainer:
         except KeyboardInterrupt:
             print("\nTraining interrupted by user")
         
-        # Save final model
+        # Save final model with visual notification
+        print("\n" + "🏁"*40)
+        print("💾 SAVING FINAL MODEL...")
+        print("🏁"*40)
+        
         final_path = f"models/{model_name}_final"
         model.save(final_path)
-        print(f"Model saved to {final_path}")
+        
+        print(f"✅ FINAL MODEL SAVED SUCCESSFULLY!")
+        print(f"📁 Location: {final_path}.zip")
+        print(f"🎉 Training complete for {model_name}")
+        print("🏁"*40)
         
         return model
     
