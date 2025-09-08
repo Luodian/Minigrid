@@ -1,4 +1,4 @@
-BabyAI-KeyCorridorS3R1 Environment Rule Description
+Environment Rule Description
 
 - Video Prompt:
     - Render a top-down grid with gray outer walls arranged as a corridor with rooms. A red triangular agent starts in the middle corridor facing right. The layout has a left column of rooms, a middle corridor (connected vertically), and a right column with one locked door. Behind the locked door is a ball, and a matching colored key is placed in one of the left rooms. The agent must find the key, navigate to the locked door, unlock it, and pick up the ball. Walls and locked doors block movement and sight; the agent can toggle doors with matching keys. Show the agent navigating through the corridor, collecting the key, unlocking the door, and retrieving the ball.

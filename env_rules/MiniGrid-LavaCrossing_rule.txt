@@ -1,4 +1,4 @@
-MiniGrid-LavaCrossing Environment Rule Description
+Environment Rule Description
 
 - Video Prompt:
     - Render a top-down 9x9 or 11x11 grid with gray outer walls. A red triangular agent starts in the top-left corner facing right. The goal is a green square at the bottom-right corner. Multiple horizontal and vertical lava rivers (red hazard stripes) cross the room, each with a single safe crossing point (gap). The agent must navigate through the safe crossing points while avoiding lava contact to reach the goal. Stepping on lava terminates the episode immediately. Show the agent carefully navigating through the lava maze using the safe crossings.

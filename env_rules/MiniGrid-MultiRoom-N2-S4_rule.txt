@@ -1,4 +1,4 @@
-MiniGrid-MultiRoom-N2-S4 Environment Rule Description
+Environment Rule Description
 
 - Video Prompt:
     - Render a top-down 25x25 grid with gray outer walls containing a series of connected rectangular rooms. A red triangular agent starts randomly positioned in the first room facing a random direction. The rooms are connected by colored doors that are initially closed. The final room contains a green goal square. The agent must traverse through the sequence of rooms by opening doors with the toggle action to reach the goal. Show the agent moving between rooms, opening doors, and navigating the connected room structure to reach the final goal.

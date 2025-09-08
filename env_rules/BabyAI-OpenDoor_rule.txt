@@ -1,4 +1,4 @@
-BabyAI-OpenDoor Environment Rule Description
+Environment Rule Description
 
 - Video Prompt:
     - Render a top-down grid with gray outer walls. A red triangular agent starts in a room with multiple colored doors. The layout varies: single room with doors (OpenDoor, OpenDoorColor), simple two-room layout (OpenRedDoor), or more complex multi-room environments (Open). The agent must navigate to a specific door as indicated by the mission and use the toggle action to open it. Doors are initially closed but unlocked. Show the agent moving to the target door and toggling it open to complete the mission.

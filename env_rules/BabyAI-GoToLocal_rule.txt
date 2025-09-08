@@ -1,4 +1,4 @@
-BabyAI-GoToLocal Environment Rule Description
+Environment Rule Description
 
 - Video Prompt:
     - Render a top-down single room grid with gray outer walls. A red triangular agent starts in the room facing right. The room contains randomly placed objects including one target object (ball/box/key) and multiple distractor objects of various colors (red, green, blue, purple, yellow, grey). The agent must navigate to the specific target object indicated by the mission text "go to the {color} {type}". Walls block movement and sight. Show the agent moving and turning to reach the designated target object.
