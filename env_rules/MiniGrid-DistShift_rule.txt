@@ -6,4 +6,4 @@ MiniGrid-DistShift Environment Rule Description
 - Rule Summary:
     - Objective: Navigate to the green goal square while avoiding lava obstacles.
     - Environment: 9x7 grid with outer walls, agent starts in top-left corner, goal in top-right area, two horizontal lava strips create obstacles.
-    - Key mechanics: Success by reaching the goal.
+    - Key mechanics: Stepping on lava is forbidden and causes immediate death/termination. Success by reaching the goal.

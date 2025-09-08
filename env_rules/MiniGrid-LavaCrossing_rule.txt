@@ -6,4 +6,4 @@ MiniGrid-LavaCrossing Environment Rule Description
 - Rule Summary:
     - Objective: Navigate to the green goal square while avoiding deadly lava rivers that have single crossing points.
     - Environment: Square grid (9x9 or 11x11) with outer walls, multiple horizontal and vertical lava rivers with safe crossing gaps.
-    - Key mechanics: Success by reaching the goal.
+    - Key mechanics: Stepping on lava is forbidden and causes immediate death/termination. Success by reaching the goal.

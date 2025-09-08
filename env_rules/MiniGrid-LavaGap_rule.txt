@@ -6,4 +6,4 @@ MiniGrid-LavaGap Environment Rule Description
 - Rule Summary:
     - Objective: Navigate to the green goal square by passing through a narrow gap in a vertical lava wall.
     - Environment: Square grid (5x5 or 6x6) with outer walls and a vertical lava wall with single gap opening.
-    - Key mechanics: Success by reaching the goal.
+    - Key mechanics: Stepping on lava is forbidden and causes immediate death/termination. Success by reaching the goal.
