@@ -101,12 +101,12 @@ def process_parquet_file(file_path: str, rule_content: str, output_path: str) ->
 def main():
     """Main function to process all parquet files."""
     # Define paths - update these as needed for your environment
-    base_dir = Path("/home/tiger")  # Update path as needed
+    base_dir = Path("/opt/tiger")  # Update path as needed
     env_rules_dir = base_dir / "Minigrid/one_paragraph_rules"
     
     # Input and output directories - update these as needed
-    parquet_dir = Path("/home/tiger/minigirid_v0")  # UPDATE THIS PATH
-    output_dir = Path("/home/tiger/minigirid_v0_one_paragraph_rules")  # UPDATE THIS PATH
+    parquet_dir = Path("/opt/tiger/minigirid_v0")  # UPDATE THIS PATH
+    output_dir = Path("/opt/tiger/minigirid_v0_one_paragraph_rules")  # UPDATE THIS PATH
     
     mapping_file = base_dir / "Minigrid/env_rules/env_mapping.yaml"
     
